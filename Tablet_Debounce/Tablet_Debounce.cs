@@ -94,17 +94,17 @@ namespace Pressure_Debounce
 
         [Property("Debounce Timer"), Unit("ms"), DefaultPropertyValue(30f), ToolTip
             ("Tablet Debounce:\n\n" +
-            "Debounce Timer: The time after an input when subsequent inputs are filtered.")]
+            "Debounce Timer: The time after an input when subsequent inputs are handled.")]
         public float Debounce_timer { set; get; }
 
         [Property("Pressure Threshold"), DefaultPropertyValue(1f), ToolTip
             ("Tablet Debounce:\n\n" +
-            "Pressure Threshold: The raw pen pressure value at which inputs are filtered.")]
+            "Pressure Threshold: The raw pen pressure value at which inputs are handled.")]
         public float Pressure_threshold { set; get; }
 
         [BooleanProperty("Drop Excess Inputs", ""), ToolTip
             ("Tablet Debounce:\n\n" +
-            "Drop Excess Inputs: Instead of combining inputs, subsequent inputs are dropped.")]
+            "Drop Excess Inputs: Instead of combining subsequent inputs within the debounce ranges, the inputs are dropped.")]
         public bool Drop_excess { set; get; }
     }
 }
