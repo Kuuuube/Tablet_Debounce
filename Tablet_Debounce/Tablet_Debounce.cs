@@ -92,13 +92,19 @@ namespace Pressure_Debounce
 
         public PipelinePosition Position => PipelinePosition.PostTransform;
 
-        [Property("Debounce Timer"), Unit("ms"), DefaultPropertyValue(30f)]
+        [Property("Debounce Timer"), Unit("ms"), DefaultPropertyValue(30f), ToolTip
+            ("Tablet Debounce:\n\n" +
+            "Debounce Timer: The time after an input where subsequent inputs are filtered.")]
         public float Debounce_timer { set; get; }
 
-        [Property("Pressure Threshold"), DefaultPropertyValue(1f)]
+        [Property("Pressure Threshold"), DefaultPropertyValue(1f), ToolTip
+            ("Tablet Debounce:\n\n" +
+            "Pressure Threshold: The pressure value at which inputs are filtered.")]
         public float Pressure_threshold { set; get; }
 
-        [BooleanProperty("Drop Excess Inputs", "")]
+        [BooleanProperty("Drop Excess Inputs", ""), ToolTip
+            ("Tablet Debounce:\n\n" +
+            "Drop Excess Inputs: Instead of combining inputs, subsequent inputs are dropped.")]
         public bool Drop_excess { set; get; }
     }
 }
