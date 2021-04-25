@@ -4,7 +4,7 @@ Filters pen pressure to remove unwanted input repetition.
 
 ## Explanation of the Values:
 
-**Debounce Timer:** The time after an input where subsequent inputs are filtered.
+**Debounce Timer:** The time after an input when subsequent inputs are filtered.
 
 **Pressure Threshold:** The raw pen pressure value at which inputs are filtered.
 
