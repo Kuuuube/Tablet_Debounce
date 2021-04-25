@@ -1,12 +1,12 @@
 # Tablet Debounce Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver)
 
-## Explanation of the Values:
+Filters pen pressure to remove unwanted input repetition.
 
-<br>
+## Explanation of the Values:
 
 **Debounce Timer:** The time after an input where subsequent inputs are filtered.
 
-**Pressure Threshold:** The pressure value at which inputs are filtered.
+**Pressure Threshold:** The raw pen pressure value at which inputs are filtered.
 
 **Drop Excess Inputs:** Instead of combining inputs, subsequent inputs are dropped.
 
