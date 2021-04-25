@@ -15,12 +15,21 @@ namespace Pressure_Debounce
         {
             if (input is ITabletReport tabletReport)
             {
-                if (tabletReport.Pressure < Pressure_threshold)
+                if (!Drop_excess)
                 {
-                    if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
+                    if (tabletReport.Pressure < Pressure_threshold)
                     {
-                        tabletReport.Pressure = last_pressure;
-                        return input;
+                        if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
+                        {
+                            tabletReport.Pressure = last_pressure;
+                            return input;
+                        }
+                        else
+                        {
+                            debounceStopwatch.Restart();
+                            last_pressure = tabletReport.Pressure;
+                            return input;
+                        }
                     }
                     else
                     {
@@ -31,9 +40,33 @@ namespace Pressure_Debounce
                 }
                 else
                 {
-                    debounceStopwatch.Restart();
-                    last_pressure = tabletReport.Pressure;
-                    return input;
+                    if (tabletReport.Pressure > Pressure_threshold)
+                    {
+                        if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
+                        {
+                            if (last_pressure < Pressure_threshold)
+                            {
+                                debounceStopwatch.Restart();
+                                tabletReport.Pressure = 0;
+                                return input;
+                            }
+                            else
+                            {
+                                return input;
+                            }
+                        }
+                        else
+                        {
+                            last_pressure = tabletReport.Pressure;
+                            debounceStopwatch.Restart();
+                            return input;
+                        }
+                    }
+                    else
+                    {
+                        last_pressure = tabletReport.Pressure;
+                        return input;
+                    }
                 }
             }
             else
@@ -64,5 +97,8 @@ namespace Pressure_Debounce
 
         [Property("Pressure Threshold"), DefaultPropertyValue(1f)]
         public float Pressure_threshold { set; get; }
+
+        [BooleanProperty("Drop Excess Inputs", "")]
+        public bool Drop_excess { set; get; }
     }
 }
