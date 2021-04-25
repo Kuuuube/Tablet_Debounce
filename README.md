@@ -14,6 +14,4 @@
 
 ## Debounce Comparison:
 
-<p align="middle">
-  <img src="https://raw.githubusercontent.com/Kuuuube/Tablet_Debounce/main/tablet_debounce_diagram.png" align="middle"/>
-</p>
+![](https://raw.githubusercontent.com/Kuuuube/Tablet_Debounce/main/tablet_debounce_diagram.png)
