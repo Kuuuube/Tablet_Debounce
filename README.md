@@ -1,4 +1,4 @@
-# Tablet Debounce Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver)
+# Tablet Debounce Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver) [![Total Download Count](https://img.shields.io/github/downloads/Kuuuube/Tablet_Debounce/total.svg)](https://github.com/Kuuuube/Tablet_Debounce/releases/latest)
 
 Prevents unintended repitition of pen tip inputs.
 
