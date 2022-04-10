@@ -18,7 +18,7 @@ Prevents unintended repitition of pen tip inputs.
 
 **Drop Excess Inputs:** Instead of extending or combining subsequent inputs, all subsequent inputs above the **Pressure Threshold** and within the time set in the **Debounce Timer** are dropped.
 
-**Disable Timer Repeating:** The timer is not reset for each subsequent press within the time set in the Debounce Timer.
+**Disable Timer Repeating:** The timer is not reset for each subsequent press within the time set in the **Debounce Timer**.
 
 <br>
 
