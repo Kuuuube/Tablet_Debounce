@@ -20,8 +20,6 @@ Prevents unintended repitition of pen tip inputs.
 
 **Disable Timer Repeating:** The timer is not reset for each subsequent press within the time set in the **Debounce Timer**.
 
-<br>
-
 ## Debounce Comparison:
 
 ![](https://raw.githubusercontent.com/Kuuuube/Tablet_Debounce/main/tablet_debounce_diagram.png)
