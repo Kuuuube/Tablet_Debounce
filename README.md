@@ -2,7 +2,7 @@
 
 Prevents unintended repitition of pen tip inputs.
 
-## Explanation of the Values:
+## Pressure Debounce:
 
 **Debounce Timer:** The time in ms after input pressure goes below the **Pressure Threshold** and subsequent inputs are extended, combined, or dropped.
 

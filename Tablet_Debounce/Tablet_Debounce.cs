@@ -109,22 +109,22 @@ namespace Pressure_Debounce
         public PipelinePosition Position => PipelinePosition.PostTransform;
 
         [Property("Debounce Timer"), Unit("ms"), DefaultPropertyValue(30f), ToolTip
-            ("Tablet Debounce:\n\n" +
+            ("Pressure Debounce:\n\n" +
             "Debounce Timer: The time in ms after input pressure goes below the Pressure Threshold and subsequent inputs are extended, combined, or dropped.")]
         public float Debounce_timer { set; get; }
 
         [Property("Pressure Threshold"), DefaultPropertyValue(1f), ToolTip
-            ("Tablet Debounce:\n\n" +
+            ("Pressure Debounce:\n\n" +
             "Pressure Threshold: The raw pen pressure value at which debounce is applied.")]
         public float Pressure_threshold { set; get; }
 
         [BooleanProperty("Drop Excess Inputs", ""), ToolTip
-            ("Tablet Debounce:\n\n" +
+            ("Pressure Debounce:\n\n" +
             "Drop Excess Inputs: Instead of extending or combining subsequent inputs, all subsequent inputs above the Pressure Threshold and within the time set in the Debounce Timer are dropped.")]
         public bool Drop_excess { set; get; }
 
         [BooleanProperty("Disable Timer Repeating", ""), ToolTip
-        ("Tablet Debounce:\n\n" +
+        ("Pressure Debounce:\n\n" +
         "Disable Timer Repeating: The timer is not reset for each subsequent press within the time set in the Debounce Timer.")]
         public bool Disable_timer { set; get; }
     }
