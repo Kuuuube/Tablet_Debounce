@@ -15,80 +15,58 @@ namespace Pressure_Debounce
         {
             if (input is ITabletReport tabletReport)
             {
-                if (!Drop_excess)
+                if (Drop_excess)
                 {
-                    if (tabletReport.Pressure < Pressure_threshold)
-                    //pressure less than threshold
-                    {
-                        if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
-                        //pressure less than threshold and elapsed time less than or equal to debounce timer
-                        {
-                            tabletReport.Pressure = last_pressure;
-                            return input;
-                        }
-                        else
-                        //pressure less than threshold and elapsed time greater than debounce timer
-                        {
-                            debounceStopwatch.Restart();
-                            last_pressure = tabletReport.Pressure;
-                            return input;
-                        }
-                    }
-                    else
-                    //pressure greater than threshold
+                    return Drop_Excess_Method(tabletReport);
+                }
+                return Default_Method(tabletReport);
+            }
+            return input;
+        }
+
+        public ITabletReport Default_Method(ITabletReport tabletReport)
+        {
+            if (tabletReport.Pressure < Pressure_threshold)
+            {
+                if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
+                {
+                    tabletReport.Pressure = last_pressure;
+                    return tabletReport;
+                }
+                debounceStopwatch.Restart();
+                last_pressure = tabletReport.Pressure;
+                return tabletReport;
+            }
+            if (!Disable_timer)
+            {
+                debounceStopwatch.Restart();
+            }
+            last_pressure = tabletReport.Pressure;
+            return tabletReport;
+        }
+
+        public ITabletReport Drop_Excess_Method(ITabletReport tabletReport)
+        {
+            if (tabletReport.Pressure > Pressure_threshold)
+            {
+                if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
+                {
+                    if (last_pressure < Pressure_threshold)
                     {
                         if (!Disable_timer)
                         {
                             debounceStopwatch.Restart();
                         }
-                        last_pressure = tabletReport.Pressure;
-                        return input;
+                        tabletReport.Pressure = 0;
                     }
+                    return tabletReport;
                 }
-                else
-                {
-                    if (tabletReport.Pressure > Pressure_threshold)
-                    //pressure greater than thereshold
-                    {
-                        if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
-                        //pressure greater than threshold and elapsed time less than or equal to debounce timer
-                        {
-                            if (last_pressure < Pressure_threshold)
-                            //pressure greater than threshold, elapsed time less than or equal to debounce timer, and last pressure less than threshold
-                            {
-                                if (!Disable_timer)
-                                {
-                                    debounceStopwatch.Restart();
-                                }
-                                tabletReport.Pressure = 0;
-                                return input;
-                            }
-                            else
-                            //pressure greater than threshold, elapsed time less than or equal to debounce timer, and last pressure greater or equal to threshold
-                            {
-                                return input;
-                            }
-                        }
-                        else
-                        //pressure greater than threshold and elapsed time greater than debounce timer
-                        {
-                            last_pressure = tabletReport.Pressure;
-                            debounceStopwatch.Restart();
-                            return input;
-                        }
-                    }
-                    else
-                    //pressure less than threshold
-                    {
-                        last_pressure = tabletReport.Pressure;
-                        return input;
-                    }
-                }
+                last_pressure = tabletReport.Pressure;
+                debounceStopwatch.Restart();
+                return tabletReport;
             }
-            else
-            {
-                return input;
-            }
+            last_pressure = tabletReport.Pressure;
+            return tabletReport;
         }
 
         public event Action<IDeviceReport> Emit;
