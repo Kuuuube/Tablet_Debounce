@@ -26,7 +26,7 @@ namespace Pressure_Debounce
 
         public ITabletReport Default_Method(ITabletReport tabletReport)
         {
-            if (tabletReport.Pressure < Pressure_threshold)
+            if (tabletReport.Pressure < 0)
             {
                 if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
                 {
@@ -47,11 +47,11 @@ namespace Pressure_Debounce
 
         public ITabletReport Drop_Excess_Method(ITabletReport tabletReport)
         {
-            if (tabletReport.Pressure > Pressure_threshold)
+            if (tabletReport.Pressure > 0)
             {
                 if (debounceStopwatch.Elapsed.TotalMilliseconds <= Debounce_timer)
                 {
-                    if (last_pressure < Pressure_threshold)
+                    if (last_pressure < 0)
                     {
                         if (!Disable_timer)
                         {
@@ -90,11 +90,6 @@ namespace Pressure_Debounce
             ("Pressure Debounce:\n\n" +
             "Debounce Timer: The time in ms after input pressure goes below the Pressure Threshold and subsequent inputs are extended, combined, or dropped.")]
         public float Debounce_timer { set; get; }
-
-        [Property("Pressure Threshold"), DefaultPropertyValue(1f), ToolTip
-            ("Pressure Debounce:\n\n" +
-            "Pressure Threshold: The raw pen pressure value at which debounce is applied.")]
-        public float Pressure_threshold { set; get; }
 
         [BooleanProperty("Drop Excess Inputs", ""), ToolTip
             ("Pressure Debounce:\n\n" +
